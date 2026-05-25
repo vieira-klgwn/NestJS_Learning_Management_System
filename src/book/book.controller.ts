@@ -8,17 +8,17 @@ export class BookController {
 
     constructor(private readonly bookService: BookService) {}
 
-    @Get('book/:id')
+    @Get(':id')
     async getBookById(id: string) {
         return this.bookService.book({ id: Number(id) });
     }
 
-    @Get('books')
+    @Get()
     async getBooks() {
         return this.bookService.books({});
     }
 
-    @Post('book')
+    @Post()
     async createBook(@Body() bookData: { title: string; authorEmail: string; publishedDate: Date }): Promise<Book> {
         const { title, authorEmail, publishedDate } = bookData;
         return this.bookService.createBook({
@@ -31,7 +31,7 @@ export class BookController {
         });
     }
 
-    @Put('book/:id')
+    @Put(':id')
     async updateBook(id: string, @Body() bookData: { title: string; authorId:number; publishedDate: Date }) {
         return this.bookService.updateBook({
             where: { id: Number(id) },
@@ -39,7 +39,7 @@ export class BookController {
         });
     }
 
-    @Delete('book/:id')
+    @Delete(':id')
     async deleteBook(id: string) {
         return this.bookService.deleteBook({ id: Number(id) });
     }

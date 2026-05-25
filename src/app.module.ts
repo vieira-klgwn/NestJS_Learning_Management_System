@@ -9,9 +9,14 @@ import { UserController } from './user/user.controller';
 import { BookService } from './book/book.service';
 import { PrismaService } from './prisma.service';
 import { UserService } from './user/user.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthModule, UserModule, BookModule],
+  imports: [
+    ConfigModule.forRoot({isGlobal: true}),
+    AuthModule,
+    UserModule, 
+    BookModule],
   controllers: [AppController, BookController, UserController],
   providers: [AppService,BookService, PrismaService,UserService],
 })
