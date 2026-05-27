@@ -24,7 +24,7 @@ export class BookController {
         return this.bookService.createBook({
             title,
             author:{
-                connect: { email: authorEmail }
+                connect: { username: authorEmail }
             
             },
             publishedDate
